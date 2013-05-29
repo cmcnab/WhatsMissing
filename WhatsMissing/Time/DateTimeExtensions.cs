@@ -21,7 +21,7 @@
 
         public static bool IsIn(this DateTime dateTime, DateTimeRange dateRange)
         {
-            return dateRange.Start <= dateTime && dateTime <= dateRange.End;
+            return dateRange.Contains(dateTime);
         }
     }
 }
