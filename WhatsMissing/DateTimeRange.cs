@@ -57,21 +57,16 @@
 
         public override bool Equals(object obj)
         {
+            if (ReferenceEquals(obj, null))
+            {
+                return false;
+            }
+
             return this.Equals((DateTimeRange)obj);
         }
 
         public bool Equals(DateTimeRange other)
         {
-            if (ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
-            if (ReferenceEquals(this, other))
-            {
-                return true;
-            }
-
             return this.Start == other.Start && this.End == other.End;
         }
 
