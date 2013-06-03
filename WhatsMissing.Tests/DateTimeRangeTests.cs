@@ -10,7 +10,6 @@
     public class DateTimeRangeTests
     {
         // -------------------- Equality Tests --------------------
-
         [Fact]
         public void SeparateEqualRangesAreEqual()
         {
@@ -154,7 +153,6 @@
         }
 
         // -------------------- Contains Tests --------------------
-
         [Fact]
         public void DateUnambigouslyInsideContainsIsTrue()
         {
@@ -226,7 +224,6 @@
         }
 
         // -------------------- Misc Tests --------------------
-
         [Fact]
         public void CopyConstructorCopiesBothDates()
         {
