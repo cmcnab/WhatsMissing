@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace WhatsMissing
+﻿namespace WhatsMissing
 {
+    using System;
+    using System.Collections.Generic;
+
     public static class Compare
     {
         public static IEqualityComparer<T> With<T>(Func<T, T, bool> equality)

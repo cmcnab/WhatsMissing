@@ -4,11 +4,6 @@
 
     public static class DateTimeExtensions
     {
-        //public static DateTime JSTimeToDate(this long milli)
-        //{
-        //    return Epoch + TimeSpan.FromMilliseconds((double)milli);
-        //}
-
         public static JavaScriptDate ToJavaScriptDate(this DateTime dateTime)
         {
             return new JavaScriptDate(dateTime);
