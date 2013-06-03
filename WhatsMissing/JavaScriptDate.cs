@@ -1,4 +1,4 @@
-﻿namespace WhatsMissing.Time
+﻿namespace WhatsMissing
 {
     using System;
 
