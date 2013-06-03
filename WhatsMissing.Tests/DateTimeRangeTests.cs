@@ -9,6 +9,8 @@
 
     public class DateTimeRangeTests
     {
+        // -------------------- Equality Tests --------------------
+
         [Fact]
         public void SeparateEqualRangesAreEqual()
         {
@@ -119,6 +121,135 @@
 
             // Assert
             Assert.False(areEqual);
+        }
+
+        [Fact]
+        public void EqualsRangesHaveSameHashCode()
+        {
+            // Arrange
+            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
+            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
+
+            // Act
+            var hash1 = range1.GetHashCode();
+            var hash2 = range2.GetHashCode();
+
+            // Assert
+            Assert.Equal(hash1, hash2);
+        }
+
+        [Fact]
+        public void DifferentRangesHaveDifferentHashCodes()
+        {
+            // Arrange
+            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
+            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 2, 1), new DateTime(2013, 2, 1));
+
+            // Act
+            var hash1 = range1.GetHashCode();
+            var hash2 = range2.GetHashCode();
+
+            // Assert
+            Assert.NotEqual(hash1, hash2);
+        }
+
+        // -------------------- Contains Tests --------------------
+
+        [Fact]
+        public void DateUnambigouslyInsideContainsIsTrue()
+        {
+            // Arrange
+            DateTimeRange range = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 30));
+            DateTime date = new DateTime(2012, 1, 15);
+
+            // Act
+            bool isInRange = range.Contains(date);
+
+            // Assert
+            Assert.True(isInRange);
+        }
+
+        [Fact]
+        public void ContainsInclusiveStartExactlyStartIsTrue()
+        {
+            // Arrange
+            DateTimeRange range = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 30));
+            DateTime date = range.Start;
+
+            // Act
+            bool isInRange = range.Contains(date, true, false);
+
+            // Assert
+            Assert.True(isInRange);
+        }
+
+        [Fact]
+        public void ContainsNotInclusiveStartExactlyStartIsFalse()
+        {
+            // Arrange
+            DateTimeRange range = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 30));
+            DateTime date = range.Start;
+
+            // Act
+            bool isInRange = range.Contains(date, false, false);
+
+            // Assert
+            Assert.False(isInRange);
+        }
+
+        [Fact]
+        public void ContainsInclusiveEndExactlyEndIsTrue()
+        {
+            // Arrange
+            DateTimeRange range = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 30));
+            DateTime date = range.End;
+
+            // Act
+            bool isInRange = range.Contains(date, true, true);
+
+            // Assert
+            Assert.True(isInRange);
+        }
+
+        [Fact]
+        public void ContainsNotInclusiveEndExactlyEndIsFalse()
+        {
+            // Arrange
+            DateTimeRange range = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 30));
+            DateTime date = range.End;
+
+            // Act
+            bool isInRange = range.Contains(date, false, false);
+
+            // Assert
+            Assert.False(isInRange);
+        }
+
+        // -------------------- Misc Tests --------------------
+
+        [Fact]
+        public void CopyConstructorCopiesBothDates()
+        {
+            // Arrange
+            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 30));
+
+            // Act
+            DateTimeRange range2 = new DateTimeRange(range1);
+
+            // Assert
+            Assert.Equal(range1.Start, range2.Start);
+            Assert.Equal(range1.End, range2.End);
+        }
+
+        [Fact]
+        public void SpanCalculatesDateDiff()
+        {
+            // Arrange
+            DateTimeRange range = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 30));
+
+            // Act / Assert
+            var diff = range.End - range.Start;
+            Assert.Equal(diff, range.Span);
         }
     }
 }
