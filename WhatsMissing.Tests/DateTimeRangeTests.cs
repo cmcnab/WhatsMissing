@@ -223,6 +223,147 @@
             Assert.False(isInRange);
         }
 
+        // -------------------- Overlaps Tests --------------------
+        [Fact]
+        public void NonButtingRangesNotInclusiveOverlaps()
+        {
+            // Arrange
+            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 3));
+            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 4));
+
+            // Act
+            var overlaps = range1.Overlaps(range2, false);
+
+            // Assert
+            Assert.True(overlaps);
+        }
+
+        [Fact]
+        public void NonButtingRangesInclusiveOverlaps()
+        {
+            // Arrange
+            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 3));
+            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 4));
+
+            // Act
+            var overlaps = range1.Overlaps(range2, true);
+
+            // Assert
+            Assert.True(overlaps);
+        }
+
+        [Fact]
+        public void ButtingLeftRangesNotInclusiveDoesntOverlap()
+        {
+            // Arrange
+            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
+            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
+
+            // Act
+            var overlaps = range1.Overlaps(range2, false);
+
+            // Assert
+            Assert.False(overlaps);
+        }
+
+        [Fact]
+        public void ButtingLeftRangesInclusiveOverlaps()
+        {
+            // Arrange
+            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
+            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
+
+            // Act
+            var overlaps = range1.Overlaps(range2, true);
+
+            // Assert
+            Assert.True(overlaps);
+        }
+
+        [Fact]
+        public void ButtingRightRangesNotInclusiveDoesntOverlap()
+        {
+            // Arrange
+            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
+            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
+
+            // Act
+            var overlaps = range1.Overlaps(range2, false);
+
+            // Assert
+            Assert.False(overlaps);
+        }
+
+        [Fact]
+        public void ButtingRightRangesInclusiveOverlaps()
+        {
+            // Arrange
+            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
+            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
+
+            // Act
+            var overlaps = range1.Overlaps(range2, true);
+
+            // Assert
+            Assert.True(overlaps);
+        }
+
+        [Fact]
+        public void InsideRangeInclusiveOverlaps()
+        {
+            // Arrange
+            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 4));
+            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
+
+            // Act
+            var overlaps = range1.Overlaps(range2, true);
+
+            // Assert
+            Assert.True(overlaps);
+        }
+
+        [Fact]
+        public void InsideRangeNonInclusiveOverlaps()
+        {
+            // Arrange
+            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 4));
+            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
+
+            // Act
+            var overlaps = range1.Overlaps(range2, false);
+
+            // Assert
+            Assert.True(overlaps);
+        }
+
+        [Fact]
+        public void EqualRangesInclusiveOverlaps()
+        {
+            // Arrange
+            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
+            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
+
+            // Act
+            var overlaps = range1.Overlaps(range2, true);
+
+            // Assert
+            Assert.True(overlaps);
+        }
+
+        [Fact]
+        public void EqualRangesNotInclusiveOverlaps()
+        {
+            // Arrange
+            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
+            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
+
+            // Act
+            var overlaps = range1.Overlaps(range2, false);
+
+            // Assert
+            Assert.True(overlaps);
+        }
+
         // -------------------- Misc Tests --------------------
         [Fact]
         public void CopyConstructorCopiesBothDates()

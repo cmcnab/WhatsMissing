@@ -55,6 +55,20 @@
             return matchStart && matchEnd;
         }
 
+        public bool Overlaps(DateTimeRange other)
+        {
+            return this.Overlaps(other, true);
+        }
+
+        public bool Overlaps(DateTimeRange other, bool inclusive)
+        {
+            return this.Contains(other.Start, inclusive, false) // Check if either of the other's dates are inside mine.
+                || this.Contains(other.End, inclusive, false)
+                || other.Contains(this.Start, inclusive, false) // Check if either of my dates are inside the other's.
+                || other.Contains(this.End, inclusive, false)
+                || this.Equals(other); // Check if our dates are exactly equal (if inclusive is false this case would not be caught above).
+        }
+
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(obj, null))
