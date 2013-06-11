@@ -364,6 +364,20 @@
             Assert.True(overlaps);
         }
 
+        [Fact]
+        public void DefaultParamOverlapsIsInclusive()
+        {
+            // Arrange
+            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
+            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
+
+            // Act
+            var overlaps = range1.Overlaps(range2);
+
+            // Assert
+            Assert.True(overlaps);
+        }
+
         // -------------------- Misc Tests --------------------
         [Fact]
         public void CopyConstructorCopiesBothDates()
