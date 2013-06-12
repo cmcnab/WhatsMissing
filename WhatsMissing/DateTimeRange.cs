@@ -84,7 +84,7 @@
                 || this.Equals(other); // Check if our dates are exactly equal (if inclusive is false this case would not be caught above).
         }
 
-        public DateTimeRange? OverlappingRange(DateTimeRange other)
+        public DateTimeRange? Intersection(DateTimeRange other)
         {
             var low1 = this.EarlyDate;
             var high1 = this.LateDate;
@@ -103,6 +103,15 @@
             }
 
             return null;
+        }
+
+        public DateTimeRange Union(DateTimeRange other)
+        {
+            var earliest = this.EarlyDate <= other.EarlyDate ? this.EarlyDate : other.EarlyDate;
+            var latest = this.LateDate > other.LateDate ? this.LateDate : other.LateDate;
+            return this.IsForward
+                ? new DateTimeRange(earliest, latest)
+                : new DateTimeRange(latest, earliest);
         }
 
         public override bool Equals(object obj)
