@@ -14,5 +14,28 @@
         {
             return new FuncComparer<T>(comparer);
         }
+
+        public static IComparer<T> WithLessThan<T>(Func<T, T, bool> lessThan)
+        {
+            Func<T, T, int> comparer = (a, b) =>
+                {
+                    if (lessThan(a, b))
+                    {
+                        if (lessThan(b, a))
+                        {
+                            throw new InvalidOperationException();
+                        }
+
+                        return -1;
+                    }
+                    else
+                    {
+                        // a < b && b < a means a == b
+                        return lessThan(b, a) ? 1 : 0;
+                    }
+                };
+
+            return new FuncComparer<T>(comparer);
+        }
     }
 }
