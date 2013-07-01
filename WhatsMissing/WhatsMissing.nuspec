@@ -1,0 +1,17 @@
+﻿<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>WhatsMissing</id>
+    <version>1.0.0</version>
+    <authors>Chadwick McNab</authors>
+    <owners>Chadwick McNab</owners>
+    <projectUrl>https://github.com/cmcnab/WhatsMissing</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A collection of helper classes and interfaces for BCL types.</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags></tags>
+    <dependencies>
+    </dependencies>
+  </metadata>
+</package>
