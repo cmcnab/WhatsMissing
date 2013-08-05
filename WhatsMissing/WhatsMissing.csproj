@@ -44,6 +44,7 @@
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="FuncComparer.cs" />
     <Compile Include="FuncEqualityComparer.cs" />
+    <Compile Include="GeneralExtensions.cs" />
     <Compile Include="IO\FileSystem.cs" />
     <Compile Include="IO\IFileSystem.cs" />
     <Compile Include="ListExtensions.cs" />

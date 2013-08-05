@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="DateTimeExtensionsTests.cs" />
     <Compile Include="DateTimeRangeTests.cs" />
+    <Compile Include="GeneralExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
