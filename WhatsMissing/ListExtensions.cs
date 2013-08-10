@@ -7,15 +7,29 @@
     {
         public static IList<T> Shuffle<T>(this IList<T> list)
         {
-            Random rng = new Random();
+            return list.Shuffle(new StandardGenerator());
+        }
+
+        public static IList<T> Shuffle<T>(this IList<T> list, IRandomGenerator rng)
+        {
             int n = list.Count;
             while (n > 1)
             {
                 n--;
                 int k = rng.Next(n + 1);
-                T value = list[k];
-                list[k] = list[n];
-                list[n] = value;
+                list.SwapIndicies(k, n);
+            }
+
+            return list;
+        }
+
+        public static IList<T> SwapIndicies<T>(this IList<T> list, int indexA, int indexB)
+        {
+            if (indexA != indexB)
+            {
+                T value = list[indexA];
+                list[indexA] = list[indexB];
+                list[indexB] = value;
             }
 
             return list;
