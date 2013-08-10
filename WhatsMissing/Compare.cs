@@ -10,6 +10,11 @@
             return new FuncEqualityComparer<T>(equality);
         }
 
+        public static IEqualityComparer<T> With<T>(Func<T, T, bool> equality, Func<T, int> hashCode)
+        {
+            return new FuncEqualityComparer<T>(equality, hashCode);
+        }
+
         public static IComparer<T> With<T>(Func<T, T, int> comparer)
         {
             return new FuncComparer<T>(comparer);
