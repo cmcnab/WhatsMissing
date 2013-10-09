@@ -70,7 +70,6 @@
         {
             private int i;
             private string s;
-            
 
             public BClass(int i, string s)
             {
