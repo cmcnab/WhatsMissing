@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Compare.cs" />
     <Compile Include="DictionaryExtensions.cs" />
+    <Compile Include="DynamicExtensions.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="FuncComparer.cs" />
     <Compile Include="FuncEqualityComparer.cs" />
