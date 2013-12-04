@@ -57,6 +57,7 @@
     <Compile Include="DateTimeRange.cs" />
     <Compile Include="ITimeSource.cs" />
     <Compile Include="JavaScriptDate.cs" />
+    <Compile Include="StringConversionExtensions.cs" />
     <Compile Include="SystemTimeSource.cs" />
     <Compile Include="Web\HttpHelper.cs" />
     <Compile Include="Web\HttpRequest.cs" />
