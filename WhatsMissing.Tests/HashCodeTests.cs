@@ -1,5 +1,6 @@
 ﻿namespace WhatsMissing.Tests
 {
+    using System;
     using Xunit;
 
     public class HashCodeTests
@@ -49,6 +50,19 @@
             Assert.NotEqual(hash1, hash2);
         }
 
+        [Fact]
+        public void HashCode_NullableStructNoValue_NoNullRefException()
+        {
+            // Arrange
+            var obj1 = new CClass(3, null);
+
+            // Act
+            var hash1 = obj1.GetHashCode();
+
+            // Assert
+            Assert.NotEqual(0, hash1);
+        }
+
         private class AClass
         {
             private string s;
@@ -80,6 +94,23 @@
             public override int GetHashCode()
             {
                 return HashCode.Compose(this.i).AndNotNull(this.s);
+            }
+        }
+
+        private class CClass
+        {
+            private int i;
+            private DateTime? d;
+
+            public CClass(int i, DateTime? d)
+            {
+                this.i = i;
+                this.d = d;
+            }
+
+            public override int GetHashCode()
+            {
+                return HashCode.Compose(this.i).And(this.d);
             }
         }
     }

@@ -25,7 +25,7 @@
             return new HashCode(arg == null ? Factor : arg.GetHashCode());
         }
 
-        public HashCode And<T>(T arg) where T : struct
+        public HashCode And<T>(T arg)
         {
             unchecked
             {
@@ -33,7 +33,7 @@
             }
         }
 
-        public HashCode AndNotNull<T>(T arg) where T : class
+        public HashCode AndNotNull<T>(T arg)
         {
             unchecked
             {
