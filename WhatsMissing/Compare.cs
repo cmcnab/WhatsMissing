@@ -35,7 +35,7 @@
                     }
                     else
                     {
-                        // a < b && b < a means a == b
+                        // !(a < b) && !(b < a) means a == b
                         return lessThan(b, a) ? 1 : 0;
                     }
                 };

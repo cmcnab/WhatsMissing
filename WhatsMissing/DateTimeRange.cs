@@ -131,10 +131,7 @@
 
         public override int GetHashCode()
         {
-            int hash = 13;
-            hash = (hash * 7) + this.Start.GetHashCode();
-            hash = (hash * 7) + this.End.GetHashCode();
-            return hash;
+            return HashCode.Compose(this.Start).And(this.End);
         }
     }
 }
