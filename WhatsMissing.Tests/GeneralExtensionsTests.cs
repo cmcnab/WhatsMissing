@@ -43,5 +43,19 @@
             // Assert
             Assert.Equal(default(int), len);
         }
+
+        [Fact]
+        public void IfNotNullCanSpecifyAlternativeDefaultValue()
+        {
+            // Arrange
+            Uri uri = null;
+
+            // Act
+            var defStr = "foo";
+            var str = uri.IfNotNull(u => u.ToString(), defStr);
+
+            // Assert
+            Assert.Equal(defStr, str);
+        }
     }
 }
