@@ -18,5 +18,10 @@
         {
             return dateRange.Contains(dateTime);
         }
+
+        public static DateTime SpecifyKind(this DateTime dateTime, DateTimeKind kind)
+        {
+            return DateTime.SpecifyKind(dateTime, kind);
+        }
     }
 }
