@@ -43,6 +43,11 @@
             get { return this.start.CompareTo(this.end) <= 0; }
         }
 
+        public static Range<T> Create(T value1, T value2)
+        {
+            return new Range<T>(value1, value2);
+        }
+
         public static bool operator ==(Range<T> range1, Range<T> range2)
         {
             return CheckEquals(range1, range2);
