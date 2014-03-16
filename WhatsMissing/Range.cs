@@ -45,27 +45,22 @@
 
         public static bool operator ==(Range<T> range1, Range<T> range2)
         {
-            return range1.Equals(range2);
+            return CheckEquals(range1, range2);
         }
 
         public static bool operator !=(Range<T> range1, Range<T> range2)
         {
-            return !range1.Equals(range2);
+            return !CheckEquals(range1, range2);
         }
 
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(obj, null))
-            {
-                return false;
-            }
-
-            return this.Equals((Range<T>)obj);
+            return CheckEquals(this, obj as Range<T>);
         }
 
         public bool Equals(Range<T> other)
         {
-            return this.Start.Equals(other.Start) && this.End.Equals(other.End);
+            return CheckEquals(this, other);
         }
 
         public override int GetHashCode()
@@ -127,6 +122,22 @@
             return this.IsForward
                 ? new Range<T>(least, greatest)
                 : new Range<T>(greatest, least);
+        }
+
+        private static bool CheckEquals(Range<T> range1, Range<T> range2)
+        {
+            if (ReferenceEquals(range1, range2))
+            {
+                return true;
+            }
+
+            if (ReferenceEquals(range1, null) || ReferenceEquals(range2, null))
+            {
+                return false;
+            }
+
+            return range1.Start.Equals(range2.Start)
+                && range1.End.Equals(range2.End);
         }
     }
 }
