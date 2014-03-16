@@ -14,8 +14,8 @@
         public void SeparateEqualRangesAreEqual()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
 
             // Act
             bool areEqual = range1.Equals(range2);
@@ -28,8 +28,8 @@
         public void SameEqualRangesAreEqual()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
-            DateTimeRange range2 = range1;
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
+            var range2 = range1;
 
             // Act
             bool areEqual = range1.Equals(range2);
@@ -42,8 +42,8 @@
         public void EqualRangesAsObjectAreEqual()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
-            object range2 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
+            object range2 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
 
             // Act
             bool areEqual = range1.Equals(range2);
@@ -56,8 +56,8 @@
         public void SeparateEqualRangesWithEqualsOperatorAreEqual()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
 
             // Act
             bool areEqual = range1 == range2;
@@ -70,8 +70,8 @@
         public void SeparateEqualRangesWithNotEqualsOperatorAreNotEqual()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
 
             // Act
             bool areEqual = range1 != range2;
@@ -84,7 +84,7 @@
         public void RangeDoesNotEqualNull()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
             object range2 = null;
 
             // Act
@@ -98,8 +98,8 @@
         public void DifferentStartDateNotEqual()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 2, 1), new DateTime(2013, 1, 1));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
+            var range2 = new Range<DateTime>(new DateTime(2012, 2, 1), new DateTime(2013, 1, 1));
 
             // Act
             bool areEqual = range1.Equals(range2);
@@ -112,8 +112,8 @@
         public void DifferentEndDateNotEqual()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2013, 2, 1));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2013, 2, 1));
 
             // Act
             bool areEqual = range1.Equals(range2);
@@ -126,8 +126,8 @@
         public void EqualsRangesHaveSameHashCode()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
 
             // Act
             var hash1 = range1.GetHashCode();
@@ -141,8 +141,8 @@
         public void DifferentRangesHaveDifferentHashCodes()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 2, 1), new DateTime(2013, 2, 1));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2013, 1, 1));
+            var range2 = new Range<DateTime>(new DateTime(2012, 2, 1), new DateTime(2013, 2, 1));
 
             // Act
             var hash1 = range1.GetHashCode();
@@ -157,7 +157,7 @@
         public void DateUnambigouslyInsideContainsIsTrue()
         {
             // Arrange
-            DateTimeRange range = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 30));
+            Range<DateTime> range = new Range<DateTime>(new DateTime(2012, 1, 2), new DateTime(2012, 1, 30));
             DateTime date = new DateTime(2012, 1, 15);
 
             // Act
@@ -171,7 +171,7 @@
         public void ContainsInclusiveStartExactlyStartIsTrue()
         {
             // Arrange
-            DateTimeRange range = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 30));
+            Range<DateTime> range = new Range<DateTime>(new DateTime(2012, 1, 2), new DateTime(2012, 1, 30));
             DateTime date = range.Start;
 
             // Act
@@ -185,7 +185,7 @@
         public void ContainsNotInclusiveStartExactlyStartIsFalse()
         {
             // Arrange
-            DateTimeRange range = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 30));
+            Range<DateTime> range = new Range<DateTime>(new DateTime(2012, 1, 2), new DateTime(2012, 1, 30));
             DateTime date = range.Start;
 
             // Act
@@ -199,7 +199,7 @@
         public void ContainsInclusiveEndExactlyEndIsTrue()
         {
             // Arrange
-            DateTimeRange range = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 30));
+            Range<DateTime> range = new Range<DateTime>(new DateTime(2012, 1, 2), new DateTime(2012, 1, 30));
             DateTime date = range.End;
 
             // Act
@@ -213,7 +213,7 @@
         public void ContainsNotInclusiveEndExactlyEndIsFalse()
         {
             // Arrange
-            DateTimeRange range = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 30));
+            Range<DateTime> range = new Range<DateTime>(new DateTime(2012, 1, 2), new DateTime(2012, 1, 30));
             DateTime date = range.End;
 
             // Act
@@ -228,8 +228,8 @@
         public void NonButtingRangesNotInclusiveOverlaps()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 3));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 4));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2012, 1, 3));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 2), new DateTime(2012, 1, 4));
 
             // Act
             var overlaps = range1.Overlaps(range2, false);
@@ -242,8 +242,8 @@
         public void NonButtingRangesInclusiveOverlaps()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 3));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 4));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2012, 1, 3));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 2), new DateTime(2012, 1, 4));
 
             // Act
             var overlaps = range1.Overlaps(range2, true);
@@ -256,8 +256,8 @@
         public void ButtingLeftRangesNotInclusiveDoesntOverlap()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
 
             // Act
             var overlaps = range1.Overlaps(range2, false);
@@ -270,8 +270,8 @@
         public void ButtingLeftRangesInclusiveOverlaps()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
 
             // Act
             var overlaps = range1.Overlaps(range2, true);
@@ -284,8 +284,8 @@
         public void ButtingRightRangesNotInclusiveDoesntOverlap()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
 
             // Act
             var overlaps = range1.Overlaps(range2, false);
@@ -298,8 +298,8 @@
         public void ButtingRightRangesInclusiveOverlaps()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
 
             // Act
             var overlaps = range1.Overlaps(range2, true);
@@ -312,8 +312,8 @@
         public void InsideRangeInclusiveOverlaps()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 4));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2012, 1, 4));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
 
             // Act
             var overlaps = range1.Overlaps(range2, true);
@@ -326,8 +326,8 @@
         public void InsideRangeNonInclusiveOverlaps()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 4));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2012, 1, 4));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
 
             // Act
             var overlaps = range1.Overlaps(range2, false);
@@ -340,8 +340,8 @@
         public void EqualRangesInclusiveOverlaps()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
 
             // Act
             var overlaps = range1.Overlaps(range2, true);
@@ -354,8 +354,8 @@
         public void EqualRangesNotInclusiveOverlaps()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
 
             // Act
             var overlaps = range1.Overlaps(range2, false);
@@ -368,8 +368,8 @@
         public void DefaultParamOverlapsIsInclusive()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
 
             // Act
             var overlaps = range1.Overlaps(range2);
@@ -383,8 +383,8 @@
         public void NonOverlappingRangesReturnNoIntersection()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 3), new DateTime(2012, 1, 4));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 3), new DateTime(2012, 1, 4));
 
             // Act
             var overlapping = range1.Intersection(range2);
@@ -397,64 +397,64 @@
         public void NonButtingRangesLeftCorrectIntersection()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 3));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 4));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2012, 1, 3));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 2), new DateTime(2012, 1, 4));
 
             // Act
             var overlapping = range1.Intersection(range2);
 
             // Assert
-            var expected = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
+            var expected = new Range<DateTime>(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
             Assert.NotNull(overlapping);
-            Assert.Equal(expected, overlapping.Value);
+            Assert.Equal(expected, overlapping);
         }
 
         [Fact]
         public void NonButtingRangesRightCorrectIntersection()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 4));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 3));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 2), new DateTime(2012, 1, 4));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2012, 1, 3));
 
             // Act
             var overlapping = range1.Intersection(range2);
 
             // Assert
-            var expected = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
+            var expected = new Range<DateTime>(new DateTime(2012, 1, 2), new DateTime(2012, 1, 3));
             Assert.NotNull(overlapping);
-            Assert.Equal(expected, overlapping.Value);
+            Assert.Equal(expected, overlapping);
         }
 
         [Fact]
         public void NonButtingRangesReverseLeftCorrectIntersection()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 3), new DateTime(2012, 1, 1));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 4), new DateTime(2012, 1, 2));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 3), new DateTime(2012, 1, 1));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 4), new DateTime(2012, 1, 2));
 
             // Act
             var overlapping = range1.Intersection(range2);
 
             // Assert
-            var expected = new DateTimeRange(new DateTime(2012, 1, 3), new DateTime(2012, 1, 2));
+            var expected = new Range<DateTime>(new DateTime(2012, 1, 3), new DateTime(2012, 1, 2));
             Assert.NotNull(overlapping);
-            Assert.Equal(expected, overlapping.Value);
+            Assert.Equal(expected, overlapping);
         }
 
         [Fact]
         public void NonButtingRangesReverseRightCorrectIntersection()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 4), new DateTime(2012, 1, 2));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 3), new DateTime(2012, 1, 1));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 4), new DateTime(2012, 1, 2));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 3), new DateTime(2012, 1, 1));
 
             // Act
             var overlapping = range1.Intersection(range2);
 
             // Assert
-            var expected = new DateTimeRange(new DateTime(2012, 1, 3), new DateTime(2012, 1, 2));
+            var expected = new Range<DateTime>(new DateTime(2012, 1, 3), new DateTime(2012, 1, 2));
             Assert.NotNull(overlapping);
-            Assert.Equal(expected, overlapping.Value);
+            Assert.Equal(expected, overlapping);
         }
 
         // -------------------- Union Tests --------------------
@@ -462,14 +462,14 @@
         public void NonOverlappingRangesReturnCorrectUnion()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 3), new DateTime(2012, 1, 4));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2012, 1, 2));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 3), new DateTime(2012, 1, 4));
 
             // Act
             var result = range1.Union(range2);
 
             // Assert
-            var expected = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 4));
+            var expected = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2012, 1, 4));
             Assert.Equal(expected, result);
         }
 
@@ -477,14 +477,14 @@
         public void OverlappingRangesLeftCorrectUnion()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 3));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 4));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2012, 1, 3));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 2), new DateTime(2012, 1, 4));
 
             // Act
             var result = range1.Union(range2);
 
             // Assert
-            var expected = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 4));
+            var expected = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2012, 1, 4));
             Assert.Equal(expected, result);
         }
 
@@ -492,14 +492,14 @@
         public void OverlappingRangesRightCorrectUnion()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 4));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 3));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 2), new DateTime(2012, 1, 4));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2012, 1, 3));
 
             // Act
             var result = range1.Union(range2);
 
             // Assert
-            var expected = new DateTimeRange(new DateTime(2012, 1, 1), new DateTime(2012, 1, 4));
+            var expected = new Range<DateTime>(new DateTime(2012, 1, 1), new DateTime(2012, 1, 4));
             Assert.Equal(expected, result);
         }
 
@@ -507,14 +507,14 @@
         public void OverlappingRangesReverseLeftCorrectUnion()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 3), new DateTime(2012, 1, 1));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 4), new DateTime(2012, 1, 2));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 3), new DateTime(2012, 1, 1));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 4), new DateTime(2012, 1, 2));
 
             // Act
             var result = range1.Union(range2);
 
             // Assert
-            var expected = new DateTimeRange(new DateTime(2012, 1, 4), new DateTime(2012, 1, 1));
+            var expected = new Range<DateTime>(new DateTime(2012, 1, 4), new DateTime(2012, 1, 1));
             Assert.Equal(expected, result);
         }
 
@@ -522,14 +522,14 @@
         public void OverlappingRangesReverseRightCorrectUnion()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 4), new DateTime(2012, 1, 2));
-            DateTimeRange range2 = new DateTimeRange(new DateTime(2012, 1, 3), new DateTime(2012, 1, 1));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 4), new DateTime(2012, 1, 2));
+            var range2 = new Range<DateTime>(new DateTime(2012, 1, 3), new DateTime(2012, 1, 1));
 
             // Act
             var result = range1.Union(range2);
 
             // Assert
-            var expected = new DateTimeRange(new DateTime(2012, 1, 4), new DateTime(2012, 1, 1));
+            var expected = new Range<DateTime>(new DateTime(2012, 1, 4), new DateTime(2012, 1, 1));
             Assert.Equal(expected, result);
         }
 
@@ -538,10 +538,10 @@
         public void CopyConstructorCopiesBothDates()
         {
             // Arrange
-            DateTimeRange range1 = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 30));
+            var range1 = new Range<DateTime>(new DateTime(2012, 1, 2), new DateTime(2012, 1, 30));
 
             // Act
-            DateTimeRange range2 = new DateTimeRange(range1);
+            var range2 = new Range<DateTime>(range1);
 
             // Assert
             Assert.Equal(range1.Start, range2.Start);
@@ -552,11 +552,11 @@
         public void SpanCalculatesDateDiff()
         {
             // Arrange
-            DateTimeRange range = new DateTimeRange(new DateTime(2012, 1, 2), new DateTime(2012, 1, 30));
+            var range = new Range<DateTime>(new DateTime(2012, 1, 2), new DateTime(2012, 1, 30));
 
             // Act / Assert
             var diff = range.End - range.Start;
-            Assert.Equal(diff, range.Span);
+            Assert.Equal(diff, range.Span());
         }
     }
 }

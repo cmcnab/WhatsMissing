@@ -9,12 +9,12 @@
             return new JavaScriptDate(dateTime);
         }
 
-        public static DateTimeRange RangeTo(this DateTime start, DateTime end)
+        public static Range<DateTime> RangeTo(this DateTime start, DateTime end)
         {
-            return new DateTimeRange(start, end);
+            return new Range<DateTime>(start, end);
         }
 
-        public static bool IsIn(this DateTime dateTime, DateTimeRange dateRange)
+        public static bool IsIn(this DateTime dateTime, Range<DateTime> dateRange)
         {
             return dateRange.Contains(dateTime);
         }
