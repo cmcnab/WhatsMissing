@@ -54,9 +54,10 @@
     <Compile Include="Params.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DateTimeExtensions.cs" />
-    <Compile Include="DateTimeRange.cs" />
+    <Compile Include="RangeExtensions.cs" />
     <Compile Include="ITimeSource.cs" />
     <Compile Include="JavaScriptDate.cs" />
+    <Compile Include="Range.cs" />
     <Compile Include="StringConversionExtensions.cs" />
     <Compile Include="SystemTimeSource.cs" />
     <Compile Include="TaskEx.cs" />

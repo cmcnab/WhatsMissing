@@ -53,6 +53,7 @@
     <Compile Include="GeneralExtensionsTests.cs" />
     <Compile Include="HashCodeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RangeTests.cs" />
     <Compile Include="StringConversionExtensionTests.cs" />
     <Compile Include="Web\HttpRequestExtensionsTests.cs" />
     <Compile Include="Web\HttpResponseExtensionsTests.cs" />

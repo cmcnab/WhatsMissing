@@ -15,7 +15,7 @@
             return hashCode.GetHashCode();
         }
 
-        public static HashCode Compose<T>(T arg) where T : struct
+        public static HashCode Compose<T>(T arg)
         {
             return new HashCode(arg.GetHashCode());
         }
