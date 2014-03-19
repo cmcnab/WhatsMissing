@@ -7,8 +7,7 @@
     {
         public IHttpRequest Create(Uri uri)
         {
-            var request = (HttpWebRequest)WebRequest.Create(uri);
-            return new HttpRequest(request);
+            return new HttpRequest(HttpWebRequest.CreateHttp(uri));
         }
     }
 }

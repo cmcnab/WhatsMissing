@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1402.2112\lib\net40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -51,6 +54,9 @@
     <Compile Include="HashCodeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringConversionExtensionTests.cs" />
+    <Compile Include="Web\HttpRequestExtensionsTests.cs" />
+    <Compile Include="Web\HttpResponseExtensionsTests.cs" />
+    <Compile Include="Web\MemoryStreams.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

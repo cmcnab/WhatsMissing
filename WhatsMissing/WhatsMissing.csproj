@@ -62,7 +62,9 @@
     <Compile Include="TaskEx.cs" />
     <Compile Include="Web\HttpHelper.cs" />
     <Compile Include="Web\HttpRequest.cs" />
+    <Compile Include="Web\HttpRequestExtensions.cs" />
     <Compile Include="Web\HttpResponse.cs" />
+    <Compile Include="Web\HttpResponseExtensions.cs" />
     <Compile Include="Web\IHttpRequest.cs" />
     <Compile Include="Web\IHttpResponse.cs" />
     <Compile Include="Web\IWebRequester.cs" />

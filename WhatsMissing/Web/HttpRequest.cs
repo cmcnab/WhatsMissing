@@ -3,6 +3,7 @@
     using System;
     using System.IO;
     using System.Net;
+    using System.Net.Security;
     using System.Threading.Tasks;
 
     internal class HttpRequest : IHttpRequest
@@ -24,6 +25,12 @@
         {
             get { return this.request.CookieContainer; }
             set { this.request.CookieContainer = value; }
+        }
+
+        public WebHeaderCollection Headers
+        {
+            get { return this.request.Headers; }
+            set { this.request.Headers = value; }
         }
 
         public string Host
@@ -55,9 +62,26 @@
             set { this.request.UserAgent = value; }
         }
 
+        public RemoteCertificateValidationCallback ServerCertificateValidationCallback
+        {
+            get { return this.request.ServerCertificateValidationCallback; }
+            set { this.request.ServerCertificateValidationCallback = value; }
+        }
+
         public Stream GetRequestStream()
         {
             return this.request.GetRequestStream();
+        }
+
+        public Task<Stream> GetRequestStreamAsync()
+        {
+            return this.request.GetRequestStreamAsync();
+        }
+
+        public IHttpResponse GetResponse()
+        {
+            var response = (HttpWebResponse)this.request.GetResponse();
+            return new HttpResponse(response);
         }
 
         public async Task<IHttpResponse> GetResponseAsync()
