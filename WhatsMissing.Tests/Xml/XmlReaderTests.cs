@@ -10,6 +10,26 @@
     public class XmlReaderTests
     {
         [Fact]
+        public void MoveToElementByName_ElementExists_SetsReaderPosition()
+        {
+            // Arrange
+            var input = "<Person><LastName>Doe</LastName><FirstName>John</FirstName><Address><City>Madison</City><State>WI</State></Address></Person>";
+            using (var stream = new MemoryStream())
+            {
+                WriteStringAndReset(stream, input);
+                var reader = XmlReader.Create(stream);
+
+                // Act
+                reader.MoveToElementByName("FirstName");
+
+                // Assert
+                Assert.Equal(XmlNodeType.Element, reader.NodeType);
+                Assert.Equal("FirstName", reader.LocalName);
+                Assert.Equal("John", reader.ReadElementText());
+            }
+        }
+
+        [Fact]
         public void ReadObjectSwitchStyle_PersonAndAddress_SerializesCorrectly()
         {
             // Arrange

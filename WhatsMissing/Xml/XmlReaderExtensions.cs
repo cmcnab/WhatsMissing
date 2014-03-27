@@ -19,6 +19,20 @@
             return reader;
         }
 
+        public static XmlReader MoveToElementByName(this XmlReader reader, string name)
+        {
+            do
+            {
+                if (reader.NodeType == XmlNodeType.Element && reader.LocalName == name)
+                {
+                    return reader;
+                }
+            }
+            while (reader.Read());
+
+            return reader;
+        }
+
         public static string ReadElementTextOrDefault(this XmlReader reader)
         {
             if (reader.NodeType != XmlNodeType.Element || reader.IsEmptyElement)
