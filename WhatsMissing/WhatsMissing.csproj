@@ -68,6 +68,10 @@
     <Compile Include="Web\IHttpResponse.cs" />
     <Compile Include="Web\IWebRequester.cs" />
     <Compile Include="Web\WebRequester.cs" />
+    <Compile Include="Xml\IXmlObjectLoader.cs" />
+    <Compile Include="Xml\XmlObjectElementLoader.cs" />
+    <Compile Include="Xml\XmlReaderExtensions.cs" />
+    <Compile Include="Xml\XmlWriterExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WhatsMissing.nuspec" />
