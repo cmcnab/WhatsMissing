@@ -57,5 +57,44 @@
             // Assert
             Assert.Equal(defStr, str);
         }
+
+        [Fact]
+        public void NullableIntIfHasValue_HasValue_ReturnsValue()
+        {
+            // Arrange
+            int? input = 42;
+
+            // Act
+            var result = input.IfHasValue(n => n / 2);
+
+            // Assert
+            Assert.Equal(21, result);
+        }
+
+        [Fact]
+        public void NullableIntIfHasValue_NoValue_ReturnsDefault()
+        {
+            // Arrange
+            int? input = null;
+
+            // Act
+            var result = input.IfHasValue(n => n / 12);
+
+            // Assert
+            Assert.Equal(default(int), result);
+        }
+
+        [Fact]
+        public void NullableIntIfHasValueSpecifyDefault_NoValue_ReturnsSepcifiedDefault()
+        {
+            // Arrange
+            int? input = null;
+
+            // Act
+            var result = input.IfHasValue(n => n / 12, 100);
+
+            // Assert
+            Assert.Equal(100, result);
+        }
     }
 }
