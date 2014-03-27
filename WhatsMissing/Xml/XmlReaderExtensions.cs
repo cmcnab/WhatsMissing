@@ -1,6 +1,7 @@
 ﻿namespace WhatsMissing.Xml
 {
     using System;
+    using System.Collections.Generic;
     using System.Xml;
 
     public static class XmlReaderExtensions
@@ -58,6 +59,20 @@
             return reader.ReadObject(new XmlObjectElementLoader<T>(elementLoader));
         }
 
+        public static T ReadObject<T>(this XmlReader reader, Action<XmlReader, IDictionary<string, Action<T>>> defineElementHandlers) where T : new()
+        {
+            var handlers = new Dictionary<string, Action<T>>();
+            defineElementHandlers(reader, handlers);
+            return reader.ReadObject<T>((r, v) =>
+                {
+                    var h = handlers.GetOrDefault(r.LocalName);
+                    if (h != null)
+                    {
+                        h(v);
+                    }
+                });
+        }
+
         public static T ReadObject<T>(this XmlReader reader, IXmlObjectLoader<T> loader)
         {
             var isEmpty = reader.IsEmptyElement;
@@ -68,7 +83,7 @@
             {
                 do
                 {
-                    loader.Attribute(reader, reader.LocalName);
+                    loader.Attribute(reader);
                 }
                 while (reader.MoveToNextAttribute());
             }
@@ -91,7 +106,7 @@
                         break;
 
                     case XmlNodeType.Element:
-                        loader.Element(reader, reader.LocalName);
+                        loader.Element(reader);
                         break;
 
                     default:

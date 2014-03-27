@@ -6,9 +6,9 @@
     {
         void Begin(XmlReader reader);
 
-        void Attribute(XmlReader reader, string name);
+        void Attribute(XmlReader reader);
 
-        void Element(XmlReader reader, string name);
+        void Element(XmlReader reader);
 
         T End(XmlReader reader);
     }

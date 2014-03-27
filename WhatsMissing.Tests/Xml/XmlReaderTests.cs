@@ -1,5 +1,7 @@
 ﻿namespace WhatsMissing.Tests.Xml
 {
+    using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.Xml;
     using WhatsMissing.Xml;
@@ -8,7 +10,7 @@
     public class XmlReaderTests
     {
         [Fact]
-        public void ReadObject_PersonAndAddress_SerializesCorrectly()
+        public void ReadObjectSwitchStyle_PersonAndAddress_SerializesCorrectly()
         {
             // Arrange
             var input = "<Person><LastName>Doe</LastName><FirstName>John</FirstName><Address><City>Madison</City><State>WI</State></Address></Person>";
@@ -28,6 +30,42 @@
                 Assert.Equal("Madison", person.Address.City);
                 Assert.Equal("WI", person.Address.State);
             }
+        }
+
+        [Fact]
+        public void ReadObjectHandlerStyle_PersonAndAddress_SerializesCorrectly()
+        {
+            // Arrange
+            var input = "<Person><LastName>Doe</LastName><FirstName>John</FirstName><Address><City>Madison</City><State>WI</State></Address></Person>";
+
+            using (var stream = new MemoryStream())
+            {
+                WriteStringAndReset(stream, input);
+
+                // Act
+                var reader = XmlReader.Create(stream);
+                reader.MoveToNextElement();
+                var person = reader.ReadObject<Person>(PersonReader);
+
+                // Assert
+                Assert.Equal("Doe", person.LastName);
+                Assert.Equal("John", person.FirstName);
+                Assert.Equal("Madison", person.Address.City);
+                Assert.Equal("WI", person.Address.State);
+            }
+        }
+
+        private static void PersonReader(XmlReader reader, IDictionary<string, Action<Person>> elementHandlers)
+        {
+            elementHandlers["LastName"] = p => p.LastName = reader.ReadElementText();
+            elementHandlers["FirstName"] = p => p.FirstName = reader.ReadElementText();
+            elementHandlers["Address"] = p => p.Address = reader.ReadObject<Address>(AddressReader);
+        }
+
+        private static void AddressReader(XmlReader reader, IDictionary<string, Action<Address>> elementHandlers)
+        {
+            elementHandlers["City"] = a => a.City = reader.ReadElementText();
+            elementHandlers["State"] = a => a.State = reader.ReadElementText();
         }
 
         private static void ReadPerson(XmlReader reader, Person person)

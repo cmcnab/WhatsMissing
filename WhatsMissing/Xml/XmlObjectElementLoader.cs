@@ -18,12 +18,12 @@
             this.value = new T();
         }
 
-        public void Attribute(XmlReader reader, string name)
+        public void Attribute(XmlReader reader)
         {
             // No action
         }
 
-        public void Element(XmlReader reader, string name)
+        public void Element(XmlReader reader)
         {
             this.elementAction(reader, this.value);
         }
