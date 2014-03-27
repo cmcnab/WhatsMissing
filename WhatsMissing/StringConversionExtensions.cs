@@ -1,6 +1,7 @@
 ﻿namespace WhatsMissing
 {
     using System;
+    using System.Globalization;
 
     public static class StringConversionExtensions
     {
@@ -123,6 +124,17 @@
         {
             DateTime result;
             if (!string.IsNullOrEmpty(s) && DateTime.TryParse(s, out result))
+            {
+                return result;
+            }
+
+            return null;
+        }
+
+        public static DateTime? AsDateTimeRoundtripKind(this string s)
+        {
+            DateTime result;
+            if (!string.IsNullOrEmpty(s) && DateTime.TryParse(s, null, DateTimeStyles.RoundtripKind, out result))
             {
                 return result;
             }

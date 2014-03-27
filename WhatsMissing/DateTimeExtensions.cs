@@ -1,6 +1,7 @@
 ﻿namespace WhatsMissing
 {
     using System;
+    using System.Globalization;
 
     public static class DateTimeExtensions
     {
@@ -22,6 +23,12 @@
         public static DateTime SpecifyKind(this DateTime dateTime, DateTimeKind kind)
         {
             return DateTime.SpecifyKind(dateTime, kind);
+        }
+
+        public static string ToIso8601String(this DateTime datetime)
+        {
+            // TODO: ensure the datetime is UTC?
+            return datetime.ToString("yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture);
         }
     }
 }
