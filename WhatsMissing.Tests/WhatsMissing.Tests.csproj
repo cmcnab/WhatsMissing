@@ -53,6 +53,7 @@
     <Compile Include="RangeTests.cs" />
     <Compile Include="StringConversionExtensionTests.cs" />
     <Compile Include="Xml\Address.cs" />
+    <Compile Include="Xml\AddressBook.cs" />
     <Compile Include="Xml\Person.cs" />
     <Compile Include="Xml\XmlReaderTests.cs" />
     <Compile Include="Xml\XmlWriterTests.cs" />
