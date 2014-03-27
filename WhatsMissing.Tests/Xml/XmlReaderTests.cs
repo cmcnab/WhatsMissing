@@ -55,11 +55,42 @@
             }
         }
 
+        [Fact]
+        public void ReadObjectList_AddressBook_SerializesCorrectly()
+        {
+            // Arrange
+            var input = "<AddressBook><Name>Book 1</Name><Addresses><Address><City>Madison</City><State>WI</State></Address><Address><City>Rochester</City><State>NY</State></Address></Addresses></AddressBook>";
+
+            using (var stream = new MemoryStream())
+            {
+                WriteStringAndReset(stream, input);
+
+                // Act
+                var reader = XmlReader.Create(stream);
+                reader.MoveToNextElement();
+                var addressBook = reader.ReadObject<AddressBook>(AddressBookReader);
+
+                // Assert
+                Assert.Equal("Book 1", addressBook.Name);
+                Assert.Equal(2, addressBook.Addresses.Count);
+                Assert.Equal("Madison", addressBook.Addresses[0].City);
+                Assert.Equal("WI", addressBook.Addresses[0].State);
+                Assert.Equal("Rochester", addressBook.Addresses[1].City);
+                Assert.Equal("NY", addressBook.Addresses[1].State);
+            }
+        }
+
         private static void PersonReader(XmlReader reader, IDictionary<string, Action<Person>> elementHandlers)
         {
             elementHandlers["LastName"] = p => p.LastName = reader.ReadElementText();
             elementHandlers["FirstName"] = p => p.FirstName = reader.ReadElementText();
             elementHandlers["Address"] = p => p.Address = reader.ReadObject<Address>(AddressReader);
+        }
+
+        private static void AddressBookReader(XmlReader reader, IDictionary<string, Action<AddressBook>> elementHandlers)
+        {
+            elementHandlers["Name"] = ab => ab.Name = reader.ReadElementText();
+            elementHandlers["Addresses"] = ab => ab.Addresses = reader.ReadObjectList<Address>("Address", AddressReader);
         }
 
         private static void AddressReader(XmlReader reader, IDictionary<string, Action<Address>> elementHandlers)

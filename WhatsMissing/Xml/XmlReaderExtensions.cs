@@ -54,6 +54,12 @@
             return reader.ReadElementTextOrDefault() ?? string.Empty;
         }
 
+        // TODO: ReadObjectList with the Action<XmlReader, T> elementLoader overload
+        public static List<T> ReadObjectList<T>(this XmlReader reader, string itemElementName, Action<XmlReader, IDictionary<string, Action<T>>> defineElementHandlers) where T : new()
+        {
+            return reader.ReadObject(new XmlListElementLoader<T>(itemElementName, defineElementHandlers));
+        }
+
         public static T ReadObject<T>(this XmlReader reader, Action<XmlReader, T> elementLoader) where T : new()
         {
             return reader.ReadObject(new XmlObjectElementLoader<T>(elementLoader));
