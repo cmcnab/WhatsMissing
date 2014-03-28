@@ -23,5 +23,15 @@
         {
             return !obj.HasValue ? defaultValue : fn(obj.Value);
         }
+
+        public static T ValueOrDefault<T>(this T? obj) where T : struct
+        {
+            return obj.HasValue ? obj.Value : default(T);
+        }
+
+        public static T ValueOrDefault<T>(this T? obj, T defaultValue) where T : struct
+        {
+            return obj.HasValue ? obj.Value : defaultValue;
+        }
     }
 }

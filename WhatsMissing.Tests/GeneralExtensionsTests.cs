@@ -96,5 +96,44 @@
             // Assert
             Assert.Equal(100, result);
         }
+
+        [Fact]
+        public void NullableIntValueOrDefault_HasValue_ReturnsValue()
+        {
+            // Arrange
+            int? input = 10;
+
+            // Act
+            var result = input.ValueOrDefault();
+
+            // Assert
+            Assert.Equal(10, result);
+        }
+
+        [Fact]
+        public void NullableIntValueOrDefault_NoValue_ReturnsDefault()
+        {
+            // Arrange
+            int? input = null;
+
+            // Act
+            var result = input.ValueOrDefault();
+
+            // Assert
+            Assert.Equal(default(int), result);
+        }
+
+        [Fact]
+        public void NullableIntValueOrDefaultSpecifyDefault_NoValue_ReturnsSpecifiedDefault()
+        {
+            // Arrange
+            int? input = null;
+
+            // Act
+            var result = input.ValueOrDefault(42);
+
+            // Assert
+            Assert.Equal(42, result);
+        }
     }
 }
