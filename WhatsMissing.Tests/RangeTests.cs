@@ -47,5 +47,12 @@
             // Act / Assert
             Assert.True(range1 != range2);
         }
+
+        [Fact]
+        public void RangeCreate_CanBeUsedWithImplicitType()
+        {
+            // Act / Assert
+            Assert.Equal(new Range<int>(0, 1), Range.Create(0, 1));
+        }
     }
 }
