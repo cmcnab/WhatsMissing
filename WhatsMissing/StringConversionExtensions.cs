@@ -66,6 +66,32 @@
 
         #endregion
 
+        #region Long
+
+        public static long? AsLong(this string s)
+        {
+            long result;
+            if (!string.IsNullOrEmpty(s) && long.TryParse(s, out result))
+            {
+                return result;
+            }
+
+            return null;
+        }
+
+        public static long AsLongOrDefault(this string s)
+        {
+            return AsLongOrDefault(s, default(long));
+        }
+
+        public static long AsLongOrDefault(this string s, long defaultValue)
+        {
+            var result = AsLong(s);
+            return result.HasValue ? result.Value : defaultValue;
+        }
+
+        #endregion
+
         #region Double
 
         public static double? AsDouble(this string s)
