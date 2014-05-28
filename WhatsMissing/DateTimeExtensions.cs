@@ -25,10 +25,16 @@
             return DateTime.SpecifyKind(dateTime, kind);
         }
 
+        [Obsolete("Use ToRoundtripKindString instead.")]
         public static string ToIso8601String(this DateTime datetime)
         {
             // TODO: ensure the datetime is UTC?
             return datetime.ToString("yyyy-MM-ddTHH:mm:ssZ", CultureInfo.InvariantCulture);
+        }
+
+        public static string ToRoundtripKindString(this DateTime datetime)
+        {
+            return datetime.ToString("o", CultureInfo.InvariantCulture);
         }
     }
 }
