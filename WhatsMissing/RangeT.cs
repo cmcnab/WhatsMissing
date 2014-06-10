@@ -124,6 +124,17 @@
                 : new Range<T>(greatest, least);
         }
 
+        public Range<T> Reverse()
+        {
+            return new Range<T>(this.end, this.start);
+        }
+
+        public Range<TResult> Map<TResult>(Func<T, TResult> selector)
+            where TResult : IEquatable<TResult>, IComparable<TResult>
+        {
+            return new Range<TResult>(selector(this.start), selector(this.end));
+        }
+
         private static bool CheckEquals(Range<T> range1, Range<T> range2)
         {
             if (ReferenceEquals(range1, range2))

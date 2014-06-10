@@ -33,5 +33,30 @@
         {
             return range.End - range.Start;
         }
+
+        public static double PercentOf(this Range<decimal> range, decimal value)
+        {
+            return (double)(value - range.Start) / (double)range.Span();
+        }
+
+        public static double PercentOf(this Range<double> range, double value)
+        {
+            return (double)(value - range.Start) / (double)range.Span();
+        }
+
+        public static double PercentOf(this Range<float> range, float value)
+        {
+            return (double)(value - range.Start) / (double)range.Span();
+        }
+
+        public static double PercentOf(this Range<int> range, int value)
+        {
+            return (double)(value - range.Start) / (double)range.Span();
+        }
+
+        public static double PercentOf(this Range<long> range, long value)
+        {
+            return (double)(value - range.Start) / (double)range.Span();
+        }
     }
 }
