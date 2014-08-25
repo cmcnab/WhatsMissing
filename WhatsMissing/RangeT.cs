@@ -68,6 +68,11 @@
             return HashCode.Compose(this.Start).And(this.End);
         }
 
+        public override string ToString()
+        {
+            return string.Format("{0}, {1}", this.Start, this.End);
+        }
+
         public bool Contains(T value)
         {
             return this.Contains(value, true, false);
