@@ -50,6 +50,7 @@
     <Compile Include="EnumerableExtensionTests.cs" />
     <Compile Include="GeneralExtensionsTests.cs" />
     <Compile Include="HashCodeTests.cs" />
+    <Compile Include="ListExtensionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RangeTests.cs" />
     <Compile Include="StringConversionExtensionTests.cs" />
