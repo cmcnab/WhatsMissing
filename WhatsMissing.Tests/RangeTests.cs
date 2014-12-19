@@ -1,5 +1,6 @@
 ﻿namespace WhatsMissing.Tests
 {
+    using System.Linq;
     using Xunit;
 
     public class RangeTests
@@ -109,6 +110,20 @@
 
             // Assert
             Assert.Equal(0.5, result);
+        }
+
+        [Fact]
+        public void AsEnumerable_Int_IsCorrect()
+        {
+            // Arrange
+            var range1 = Range.Create(0, 5);
+
+            // Act
+            var result = range1.AsEnumerable().ToList();
+
+            // Assert
+            var expected = new int[] { 0, 1, 2, 3, 4 };
+            Assert.Equal(expected, result);
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿namespace WhatsMissing
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public static class RangeExtensions
     {
@@ -57,6 +59,11 @@
         public static double PercentOf(this Range<long> range, long value)
         {
             return (double)(value - range.Start) / (double)range.Span();
+        }
+
+        public static IEnumerable<int> AsEnumerable(this Range<int> range)
+        {
+            return Enumerable.Range(range.Start, range.Span());
         }
     }
 }
