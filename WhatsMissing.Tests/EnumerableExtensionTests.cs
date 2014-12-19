@@ -1,6 +1,7 @@
 ﻿namespace WhatsMissing.Tests
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using Xunit;
 
@@ -37,6 +38,57 @@
             // Assert
             var expected = new Tuple<int, int>[] { };
             Assert.Equal(expected, pairs);
+        }
+
+        [Fact]
+        public void Separator_NullSequence_Throws()
+        {
+            // Arrange
+            IEnumerable<int> seq = null;
+
+            // Act / Assert
+            Assert.Throws<ArgumentNullException>(() => seq.Separator(0).ToList());
+        }
+
+        [Fact]
+        public void Separator_NoElements_ReturnsEmpty()
+        {
+            // Arrange
+            var seq = new int[] { };
+
+            // Act
+            var results = seq.Separator(0).ToList();
+
+            // Assert
+            Assert.Equal(0, results.Count);
+        }
+
+        [Fact]
+        public void Separator_OneElements_ReturnsJustThatElement()
+        {
+            // Arrange
+            var seq = new int[] { 1 };
+
+            // Act
+            var results = seq.Separator(0).ToList();
+
+            // Assert
+            var expected = new int[] { 1 };
+            Assert.Equal(expected, results);
+        }
+
+        [Fact]
+        public void Separator_TwoElements_ReturnsElementsWithSeparator()
+        {
+            // Arrange
+            var seq = new int[] { 1, 2 };
+
+            // Act
+            var results = seq.Separator(0).ToList();
+
+            // Assert
+            var expected = new int[] { 1, 0, 2 };
+            Assert.Equal(expected, results);
         }
     }
 }
