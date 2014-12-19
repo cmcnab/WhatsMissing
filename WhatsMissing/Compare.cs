@@ -42,5 +42,16 @@
 
             return new FuncComparer<T>(comparer);
         }
+
+        public static IEqualityComparer<double> Doubles(int precision)
+        {
+            if (precision < 0)
+            {
+                throw new ArgumentOutOfRangeException("precision", precision, "Precision must be zero or positive");
+            }
+
+            double delta = Math.Pow(10.0, -precision);
+            return Compare.With<double>((a, b) => Math.Abs(b - a) < delta);
+        }
     }
 }
