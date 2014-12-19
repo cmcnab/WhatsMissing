@@ -44,6 +44,7 @@
     <Compile Include="DictionaryExtensions.cs" />
     <Compile Include="DynamicExtensions.cs" />
     <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="FakeTimeSource.cs" />
     <Compile Include="FuncComparer.cs" />
     <Compile Include="FuncEqualityComparer.cs" />
     <Compile Include="GeneralExtensions.cs" />
