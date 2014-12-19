@@ -8,15 +8,5 @@
         {
             get { return DateTime.UtcNow; }
         }
-
-        public DateTimeOffset OffsetNow
-        {
-            get { return DateTimeOffset.Now; }
-        }
-
-        public DateTimeOffset OffsetUtcNow
-        {
-            get { return DateTimeOffset.UtcNow; }
-        }
     }
 }
