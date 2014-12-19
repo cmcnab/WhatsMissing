@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public static class EnumerableExtensions
     {
@@ -35,6 +36,29 @@
                 {
                     yield return Tuple.Create(previous, it.Current);
                     previous = it.Current;
+                }
+            }
+        }
+
+        public static IEnumerable<T> Separator<T>(this IEnumerable<T> sequence, T separator)
+        {
+            if (sequence == null)
+            {
+                throw new ArgumentNullException("sequence");
+            }
+
+            using (var it = sequence.GetEnumerator())
+            {
+                if (!it.MoveNext())
+                {
+                    yield break;
+                }
+
+                yield return it.Current;
+                while (it.MoveNext())
+                {
+                    yield return separator;
+                    yield return it.Current;
                 }
             }
         }
